@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  app:
+    container_name: app
+    restart: always
+    volumes:
+      - ./:/var/www/app
+    build:
+      dockerfile: ./docker/python/Dockerfile
+      context: .
+    command: flask run --host=0.0.0.0 --port=5000
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_APP=app
+      - FLASK_ENV=development
+
+  mongodb:
+    container_name: mongodb
+    restart: always
+    hostname: mongodb
+    image: mongo:bionic
+    ports:
+      - 27017:27017
+    volumes:
+      - ./docker/mongodb/data:/data/db
+      - ./docker/mongodb/mongodb-init.js:/docker-entrypoint-initdb.d/mongodb-init.js
+    environment:
+      - MONGO_INITDB_DATABASE=flask_with_mongoengine
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
