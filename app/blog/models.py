@@ -9,7 +9,9 @@ class Post(db.orm.Document):
     """
     Post model class
     """
-    __tablename__ = "posts"
+    meta = {
+        'collection': 'posts'
+    }
 
     id = db.orm.SequenceField(
         primary_key=True)
