@@ -4,6 +4,9 @@ Module that define blog models
 from datetime import datetime
 from app.db import db
 
+__all__ = (
+    'Post',
+)
 
 class Post(db.orm.Document):
     """

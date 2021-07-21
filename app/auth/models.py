@@ -3,6 +3,9 @@ Module that define auth models
 """
 from app.db import db
 
+__all__ = (
+    'User',
+)
 
 class User(db.orm.Document):
     """

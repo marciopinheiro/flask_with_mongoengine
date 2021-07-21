@@ -11,8 +11,6 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
-    print(app.config)
-
     try:
         os.makedirs(app.instance_path)
     except OSError:
@@ -20,11 +18,11 @@ def create_app(test_config=None):
 
     db.init_app(app)
 
-    from .auth import auth
-    app.register_blueprint(auth)
+    from .auth import blueprint as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
-    from .blog import blog
-    app.register_blueprint(blog)
+    from .blog import blueprint as blog_blueprint
+    app.register_blueprint(blog_blueprint)
 
     app.add_url_rule('/', endpoint='index')
 
