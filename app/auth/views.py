@@ -69,9 +69,10 @@ class Login(MethodView):
     def post(self):
         username = request.form['username']
         password = request.form['password']
+        error = None
 
         user = User.objects.filter(username=username).first_or_404()
-        error = None
+        
 
         if user is None:
             error = 'Incorrect username.'

@@ -15,6 +15,7 @@ __all__ = (
     'Delete'
 )
 
+
 class Index(MethodView):
     """
     Blog Index View class
@@ -97,4 +98,5 @@ class Delete(MethodView):
     def post(self, id):
         post = get_post(id)
         post.delete()
+
         return redirect(url_for('blog.index'))

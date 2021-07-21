@@ -8,6 +8,7 @@ __all__ = (
     'Post',
 )
 
+
 class Post(db.orm.Document):
     """
     Post model class

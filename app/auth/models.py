@@ -7,6 +7,7 @@ __all__ = (
     'User',
 )
 
+
 class User(db.orm.Document):
     """
     Auth model class
